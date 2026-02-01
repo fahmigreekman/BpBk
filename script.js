@@ -9,15 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         inputs.forEach((input, index) => {
             input.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    const isTextArea = e.target.tagName.toLowerCase() === 'textarea';
-                    if (!isTextArea) {
-                        e.preventDefault();
-                        if (index < inputs.length - 1) {
-                            inputs[index + 1].focus();
-                        } else {
-                            prosesSimpan();
-                        }
+                if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                    e.preventDefault(); 
+                    
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    } else {
+                        prosesSimpan();
                     }
                 }
             });
@@ -30,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function prosesSimpan() {
-        if (!form) return;
         const formData = new FormData(form);
         const dataBaru = {};
         let adaData = false;
@@ -42,10 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (!adaData) {
-            alert("Mohon isi data terlebih dahulu!");
-            return;
-        }
+        if (!adaData) return;
 
         let db = JSON.parse(localStorage.getItem('database_bk')) || [];
         db.push(dataBaru);
@@ -67,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dataHalamanIni = db.filter(item => {
             const keys = Object.keys(item);
-            if (headers.some(h => h.includes('absen')) && keys.includes('status')) return true;
-            if (headers.some(h => h.includes('layanan')) && keys.includes('layanan')) return true;
-            if (headers.some(h => h.includes('nis')) && keys.includes('nis')) return true;
+            if (headers.some(h => h.includes('absen') || h.includes('status')) && keys.includes('status')) return true; 
+            if (headers.some(h => h.includes('layanan')) && keys.includes('layanan')) return true; 
+            if (headers.some(h => h.includes('nis')) && keys.includes('nis')) return true; 
             return false;
         }).slice(-1); 
 
@@ -87,12 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btn) {
             btn.onclick = (e) => {
                 e.preventDefault();
-                if (typeof XLSX === 'undefined') {
-                    alert('Library Excel belum dimuat! Pastikan ada koneksi internet.');
-                    return;
-                }
-
                 let db = JSON.parse(localStorage.getItem('database_bk')) || [];
+                
                 const dataDiExport = db.filter(item => item.hasOwnProperty(keyIdentitas));
                 const dataTetapTinggal = db.filter(item => !item.hasOwnProperty(keyIdentitas));
                 
@@ -110,7 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 XLSX.writeFile(wb, `${namaFileDinamis}.xlsx`);
 
                 localStorage.setItem('database_bk', JSON.stringify(dataTetapTinggal));
-                alert(`Laporan berhasil diunduh. Data telah dikosongkan.`);
+                
+                alert(`Laporan ${namaFileDinamis} berhasil diunduh. Data telah dikosongkan.`);
                 muatDataKeTabel(); 
             };
         }
