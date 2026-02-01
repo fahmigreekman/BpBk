@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Absensi BK</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<h1>Absensi BK</h1>
+
+<form>
+    <input type="date" name="tanggal" required>
+    <input type="number" name="absen_siswa" placeholder="No. Absen" required> <input type="text" name="nama" placeholder="Nama Siswa" required>
+    <input type="text" name="kelas" placeholder="Kelas" required>
+    <select name="status">
+        <option value="Hadir">Hadir</option>
+        <option value="Sakit">Sakit</option>
+        <option value="Izin">Izin</option>
+        <option value="Alpa">Alpa</option>
+    </select>
+    <button type="submit">Simpan</button>
+</form>
+<div class="table-container">
+<table border="1">
+    <tr>
+        <th>Tanggal</th>
+        <th>No. Absen</th> <th>Nama</th>
+        <th>Kelas</th>
+        <th>Status</th>
+    </tr>
+</table>
+</div>
+<br>
+<a href="index.html">Kembali ke Dashboard</a>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jurnal BK</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<h1>Jurnal BK</h1>
+
+<form>
+    <label>Tanggal:</label><br>
+    <input type="date" name="tanggal"><br><br>
+
+    <label>Kelas:</label><br>
+    <input type="text" name="kelas"><br><br>
+
+    <label>Jenis Layanan:</label><br>
+    <select name="layanan">
+        <option>Konseling Individu</option>
+        <option>Konseling Kelompok</option>
+        <option>Bimbingan Klasikal</option>
+    </select><br><br>
+
+    <label>Materi / Topik:</label><br>
+    <input type="text" name="materi"><br><br>
+
+    <label>Catatan:</label><br>
+    <textarea name="catatan" rows="4" cols="40"></textarea><br><br>
+
+    <button type="submit">Simpan Jurnal</button>
+</form>
+
+<hr>
+<div class="table-container">
+<table border="1">
+    <tr>
+        <th>Tanggal</th>
+        <th>Kelas</th>
+        <th>Layanan</th>
+        <th>Materi</th>
+    </tr>
+</table>
+</div>
+<br>
+<a href="index.html">Kembali ke Dashboard</a>
+<script src="script.js"></script>
+</body>
+</html>

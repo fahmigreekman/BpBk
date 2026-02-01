@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Siswa</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<h1>Data Siswa</h1>
+
+<form>
+    <label>NIS:</label><br>
+    <input type="text" name="nis"><br><br>
+
+    <label>Nama Siswa:</label><br>
+    <input type="text" name="nama"><br><br>
+
+    <label>Kelas:</label><br>
+    <input type="text" name="kelas"><br><br>
+
+    <label>Jenis Kelamin:</label><br>
+    <select name="jk">
+        <option>Laki-laki</option>
+        <option>Perempuan</option>
+    </select><br><br>
+
+    <button type="submit">Simpan</button>
+</form>
+
+<hr>
+<div class="table-container">
+<table border="1">
+    <tr>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Jenis Kelamin</th>
+    </tr>
+</table>
+</div>
+<br>
+<a href="index.html">Kembali ke Dashboard</a>
+<script src="script.js"></script>
+</body>
+</html>
